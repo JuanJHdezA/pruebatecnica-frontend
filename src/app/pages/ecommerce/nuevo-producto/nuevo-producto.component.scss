@@ -1,0 +1,25 @@
+/* Ajuste de contenedores para dar espacio y orden */
+:host {
+  display: block;
+}
+
+/* Forzar que los componentes de PrimeNG llenen el ancho del grid de Tailwind */
+::ng-deep .p-dropdown,
+::ng-deep .p-inputtext,
+::ng-deep .p-inputgroup {
+  width: 100% !important;
+}
+
+/* Estilo para los botones de talla (Size) */
+::ng-deep .p-selectbutton {
+  .p-button {
+    border-radius: 8px !important;
+    min-width: 45px;
+  }
+}
+
+/* Espaciado interno de las tarjetas de PrimeNG */
+::ng-deep .p-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}

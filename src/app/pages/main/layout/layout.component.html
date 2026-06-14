@@ -1,0 +1,15 @@
+<div
+  class="h-screen w-screen grid transition-all duration-300 ease-in-out"
+  [style.grid-template-columns]="_layoutService.SidebarVisible() ? '260px 1fr' : '0px 1fr'"
+  style="grid-template-rows: 64px 1fr"
+>
+  <app-sidebar class="row-span-2 overflow-hidden"></app-sidebar>
+
+  <app-topbar class="col-start-2 row-start-1"></app-topbar>
+
+  <main class="col-start-2 row-start-2 overflow-y-auto p-4 bg-slate-200">
+    <div class="w-full h-full border-round-2xl">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

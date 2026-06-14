@@ -1,0 +1,64 @@
+<div class="flex min-h-screen bg-slate-50" [ngClass]="{ 'cursor-wait': loading() }">
+  <div class="flex-1 flex flex-col justify-center items-center p-8 lg:p-16">
+    <div class="w-full max-w-sm">
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold text-slate-900">Iniciar Sesión</h2>
+        <p class="text-slate-500 mt-2">Bienvenido, ingresa tus datos.</p>
+      </div>
+
+      <form [formGroup]="login" (ngSubmit)="ingresar($event)" class="space-y-5">
+        <div>
+          <label for="usuario" class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wider"
+            >Usuario</label
+          >
+
+          <div
+            class="flex items-center w-full bg-slate-50 border border-slate-200 rounded-xl px-4 focus-within:bg-white focus-within:border-slate-300 transition-all"
+          >
+            <i class="pi pi-user text-slate-800"></i>
+            <input
+              type="text"
+              placeholder="Ingresa tu usuario"
+              formControlName="email"
+              id="usuario"
+              class="w-full bg-transparent py-3 pl-3 text-slate-700 placeholder:text-slate-400 outline-none border-none shadow-none"
+              style="text-transform: lowercase"
+            />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Contraseña</label>
+          <app-custom-password formControlName="password" class="block w-full"></app-custom-password>
+        </div>
+        @if (error.show) {
+          <div class="form-field">
+            <p-message class="mt-2" severity="error" variant="simple" size="large">
+              {{ error.mns }}
+            </p-message>
+          </div>
+        }
+        @if (loading()) {
+          <p-progressbar mode="indeterminate" [style]="{ height: '6px' }" />
+        }
+        <button
+          severity="contrast"
+          class="w-full bg-slate-900 text-white font-semibold py-3 rounded-xl hover:bg-slate-800 transition-all active:scale-[0.98]"
+          [disabled]="loading()"
+          (onClick)="ingresar()"
+        >
+          <span pButtonLabel>Acceder</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="hidden lg:flex flex-1 bg-slate-900 p-12 items-center justify-center relative overflow-hidden">
+    <div class="absolute w-96 h-96 bg-slate-800 rounded-full -top-20 -right-20 opacity-50 blur-3xl"></div>
+
+    <div class="z-10 text-white text-center">
+      <img src="" alt="logo-img" class="w-64 h-64 mb-8 mx-auto" />
+      <h3 class="text-2xl font-semibold">Gestiona tu equipo</h3>
+      <p class="text-slate-400 mt-2 max-w-xs mx-auto">Accede a tu panel administrativo de manera segura y eficiente.</p>
+    </div>
+  </div>
+</div>

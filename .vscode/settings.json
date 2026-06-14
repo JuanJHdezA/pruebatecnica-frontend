@@ -1,0 +1,27 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "indentRainbow.errorColor": "rgba(255,0,0,0.3)",
+  "indentRainbow.colors": [
+    "rgba(0, 128, 255, 0.2)", // azul claro
+    "rgba(0, 200, 150, 0.2)", // verde azulado
+    "rgba(255, 165, 0, 0.2)", // naranja
+    "rgba(128, 0, 128, 0.2)", // morado
+    "rgba(75, 0, 130, 0.2)", // índigo
+    "rgba(0, 255, 255, 0.2)", // cian
+    "rgba(255, 20, 147, 0.2)", // rosa fuerte
+    "rgba(128, 128, 0, 0.2)" // oliva
+  ],
+  "editor.renderWhitespace": "all"
+}

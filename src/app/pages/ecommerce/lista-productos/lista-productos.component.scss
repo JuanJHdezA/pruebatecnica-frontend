@@ -1,0 +1,18 @@
+/* En tu archivo CSS, asegúrate de tener una clase para el contenedor padre */
+.grid-container {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4;
+}
+
+.product-grid {
+  // Con esto logramos que se distribuyan en columnas
+  display: grid;
+
+  // Define que cada tarjeta tenga un tamaño flexible pero con un mínimo
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  // Espaciado entre tarjetas
+  gap: 1.5rem;
+
+  // Padding para que no se peguen a los bordes
+  padding: 1.5rem;
+}

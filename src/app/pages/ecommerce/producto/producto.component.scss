@@ -1,0 +1,53 @@
+.product-card {
+  @apply max-w-sm rounded-3xl overflow-hidden bg-white shadow-lg transition-transform duration-300 hover:-translate-y-1 border border-gray-100;
+
+  .image-container {
+    @apply h-80 w-full overflow-hidden;
+    img {
+      @apply w-full h-full object-cover;
+    }
+  }
+
+  .card-body {
+    @apply p-5;
+  }
+
+  .header-row {
+    @apply flex justify-between items-start mb-3;
+  }
+
+  .badge {
+    @apply bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider;
+  }
+
+  .actions {
+    @apply flex gap-2;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-full border border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-200 transition-colors;
+    .icon {
+      @apply w-5 h-5;
+    }
+  }
+
+  .title {
+    @apply text-xl font-semibold text-gray-800 mb-4;
+  }
+
+  .footer-row {
+    @apply flex justify-between items-center;
+  }
+
+  .price {
+    @apply text-2xl font-bold text-gray-900;
+  }
+
+  .rating {
+    @apply flex items-center bg-yellow-50 text-yellow-600 px-3 py-1 rounded-lg font-bold text-sm;
+  }
+
+  .star {
+    @apply mr-1;
+  }
+}
