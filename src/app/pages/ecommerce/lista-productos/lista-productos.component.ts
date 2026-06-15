@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { PrimeNGModule } from '@modules/primeng.module';
 import { ProductoComponent } from '../producto/producto.component';
 import { ListaproductosService } from './services/listaproductos.service';
 import { ProductosInterface } from './interfaces/lista-productos.component.interface';
-import console from 'node:console';
 import { ResponseInterface } from 'src/app/core/interfaces/response.interface';
+import { CatNewProductsInterface } from '../nuevo-producto/interfaces/nuevo-producto.component.interface';
 
 @Component({
   selector: 'app-lista-productos',
@@ -20,6 +20,25 @@ export class ListaProductosComponent implements OnInit {
   public Productos = signal<ProductosInterface[]>([]);
   public loading = signal<boolean>(true);
   public working = signal<boolean>(false);
+  public searchTerm = signal('');
+  public pSearch = '';
+
+  public selectedCategoria = signal<number | null>(null);
+
+  //Filtro de búsquedas
+  public ProductosFiltrados = computed(() => {
+    const term = this.searchTerm().toLowerCase().trim();
+    const catId = this.selectedCategoria(); // Filtro de categoría
+    const listaOriginal = this.Productos();
+
+    return listaOriginal.filter((p) => {
+      const matchesTerm =
+        !term || p.nombreProducto?.toLowerCase().includes(term) || p.descripcionProducto?.toLowerCase().includes(term);
+
+      const matchesCategory = !catId || p.categorias?.some((c) => c.idCategoria === catId);
+      return matchesTerm && matchesCategory;
+    });
+  });
 
   constructor() {}
 
@@ -52,5 +71,10 @@ export class ListaProductosComponent implements OnInit {
     }
 
     this.working.set(false);
+  }
+
+  public filtrarPorTexto(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
   }
 }

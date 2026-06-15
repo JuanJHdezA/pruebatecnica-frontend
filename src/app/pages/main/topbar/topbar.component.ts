@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { PrimeNGModule } from '@modules/primeng.module';
 import { LayoutService } from '../layout/services/layout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -9,6 +10,8 @@ import { LayoutService } from '../layout/services/layout.service';
   styleUrl: './topbar.component.scss'
 })
 export class TopbarComponent {
+  private _router = inject(Router);
+
   //Servicios
   layoutService = inject(LayoutService);
 
@@ -50,7 +53,7 @@ export class TopbarComponent {
 
   // Lógica específica para el logout
   logout() {
-    console.log('Cerrando sesión...');
+    this._router.navigateByUrl('login').then();
     // Aquí iría tu servicio de autenticación: this.authService.logout();
   }
 

@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { PrimeNGModule } from '@modules/primeng.module';
-import { ListaproductosService } from './services/listaproductos.service';
+import { NuevoProductosService } from './services/nuevoproducto.service';
 import {
   catCategoriasInterface,
   catEstatus,
@@ -22,7 +22,7 @@ import { ProductosInterface } from '../lista-productos/interfaces/lista-producto
 })
 export class NuevoProductoComponent {
   private _ActivatedRoute = inject(ActivatedRoute);
-  private _LsProductsServices = inject(ListaproductosService);
+  private _LsProductsServices = inject(NuevoProductosService);
   private messageService = inject(MessageService);
   private _router = inject(Router);
 
@@ -42,15 +42,6 @@ export class NuevoProductoComponent {
   });
 
   public frmProduct: FormGroup = new FormGroup({});
-
-  public cities = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-  ];
-  selectedCity: { name: string; code: string } | undefined;
 
   constructor() {
     this.crearFormulario();

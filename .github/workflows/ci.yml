@@ -1,0 +1,40 @@
+name: CI - Integración Continua
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descargar el código fuente del repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # 2. Configurar el entorno de Node.js con cache de npm habilitado
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Instalar dependencias del proyecto de forma limpia (usando package-lock.json)
+      - name: Instalar dependencias
+        run: npm ci
+
+      # 4. Validar formato de código (Prettier)
+      - name: Verificar formato de código (Prettier)
+        run: npx prettier --check "src/**/*.{ts,html,scss}"
+
+      # 5. Ejecutar Pruebas Unitarias
+      # Se ejecuta en modo single-run (--watch=false) y usando el navegador Chrome en modo Headless (sin GUI)
+      - name: Ejecutar Pruebas Unitarias
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      # 6. Compilar el proyecto para Producción
+      - name: Construir aplicación para Producción
+        run: npm run build

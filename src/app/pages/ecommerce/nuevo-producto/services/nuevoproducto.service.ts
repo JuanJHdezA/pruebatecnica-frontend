@@ -8,7 +8,7 @@ import { CreateProductoService } from '../interfaces/nuevo-producto.service.inte
 @Injectable({
   providedIn: 'root'
 })
-export class ListaproductosService {
+export class NuevoProductosService {
   private enpoint: string = 'productos';
   constructor(private http: HttpClient) {}
 

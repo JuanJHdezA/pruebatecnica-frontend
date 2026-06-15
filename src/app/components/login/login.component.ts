@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   private crearFormulario(data?: { usuario?: string; password?: string }) {
     this.login = new FormGroup({
       email: new FormControl(data?.usuario ?? 'usuarioprueba', [Validators.required]),
-      password: new FormControl(data?.password ?? null, [Validators.required])
+      password: new FormControl(data?.password ?? 'temporal', [Validators.required])
     });
   }
 
