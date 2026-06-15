@@ -12,10 +12,11 @@ import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProductosInterface } from '../lista-productos/interfaces/lista-productos.component.interface';
+import { FileUploaderComponent } from '@components/file-uploader/file-uploader.component';
 
 @Component({
   selector: 'app-nuevo-producto',
-  imports: [PrimeNGModule, FormsModule],
+  imports: [PrimeNGModule, FormsModule, FileUploaderComponent],
   templateUrl: './nuevo-producto.component.html',
   styleUrl: './nuevo-producto.component.scss',
   providers: [MessageService]
@@ -32,6 +33,7 @@ export class NuevoProductoComponent {
   public imageBase64 = signal<string>('');
   public loading = signal<boolean>(true);
   public UpdateImg = signal<boolean>(false);
+  public fileUploaders = signal<number[]>([]);
 
   //Variables
   public catalogos = signal<CatNewProductsInterface>({
@@ -146,6 +148,19 @@ export class NuevoProductoComponent {
       estatus: estatus,
       imagen: img
     });
+  }
+
+  public agregarCargador() {
+    // Generamos un nuevo ID basado en la longitud actual
+    const newId = this.fileUploaders().length + 1;
+
+    if (newId <= 3) {
+      this.fileUploaders.update((items) => [...items, newId]);
+    }
+  }
+
+  public eliminarCargador(index: number) {
+    this.fileUploaders.update((items) => items.filter((_, i) => i !== index));
   }
 
   public onFileSelected(event: any): void {

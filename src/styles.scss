@@ -21,19 +21,3 @@ router-outlet + * {
   box-sizing: border-box;
 }
 
-/* src/styles.scss */
-
-@media (max-width: 768px) {
-  /* Si el sidebar está abierto en móvil, se superpone */
-  app-sidebar {
-    position: absolute;
-    height: 100vh;
-    z-index: 50;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Forzamos que el contenido principal siempre ocupe el ancho total en móvil */
-  .grid-cols-\[0px_1fr\] {
-    grid-template-columns: 0px 1fr !important;
-  }
-}

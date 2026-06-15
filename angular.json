@@ -75,7 +75,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environment/environment.ts",
-                  "with": "src/environment/environment.teset.ts"
+                  "with": "src/environment/environment.test.ts"
                 }
               ],
               "outputHashing": "all"

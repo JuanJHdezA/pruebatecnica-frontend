@@ -1,15 +1,27 @@
-<div
-  class="h-screen w-screen grid transition-all duration-300 ease-in-out"
-  [style.grid-template-columns]="_layoutService.SidebarVisible() ? '260px 1fr' : '0px 1fr'"
-  style="grid-template-rows: 64px 1fr"
->
-  <app-sidebar class="row-span-2 overflow-hidden"></app-sidebar>
+<div class="h-screen w-screen flex overflow-hidden bg-slate-200 relative">
+  <!-- Backdrop for mobile overlay when sidebar is visible -->
+  @if (_layoutService.SidebarVisible()) {
+    <div
+      (click)="_layoutService.toggleSidebar()"
+      class="fixed inset-0 bg-black/40 z-40 md:hidden transition-opacity duration-300"
+    ></div>
+  }
 
-  <app-topbar class="col-start-2 row-start-1"></app-topbar>
+  <app-sidebar
+    [class.w-64]="_layoutService.SidebarVisible()"
+    [class.w-0]="!_layoutService.SidebarVisible()"
+    [class.translate-x-0]="_layoutService.SidebarVisible()"
+    [class.-translate-x-full]="!_layoutService.SidebarVisible()"
+    class="block h-full overflow-hidden transition-all duration-300 ease-in-out flex-shrink-0 absolute md:relative z-50 md:z-0 shadow-lg md:shadow-none left-0 top-0 h-screen md:h-full md:translate-x-0"
+  ></app-sidebar>
 
-  <main class="col-start-2 row-start-2 overflow-y-auto p-4 bg-slate-200">
-    <div class="w-full h-full border-round-2xl">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
+  <div class="flex-1 flex flex-col h-full overflow-hidden">
+    <app-topbar class="block h-16 w-full flex-shrink-0"></app-topbar>
+
+    <main class="flex-1 overflow-y-auto p-4 bg-slate-200">
+      <div class="w-full h-full rounded-2xl overflow-hidden bg-white shadow-sm">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
 </div>
